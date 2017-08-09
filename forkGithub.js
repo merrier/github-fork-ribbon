@@ -2,11 +2,11 @@
  * @author Merrier
  * QQ:953075999
  * @website: http://www.merrier.wang
- * @name fork-github 1.0.0
+ * @name github-fork-ribbon 2.0.0
  * @description 用于为网页自动生成fork github按钮的JS插件
  *
  * 调用方法：
- * 提供 var fg = new forkGithub() 构造函数，构建forkGithub实例
+ * 提供 var fg = new githubFork() 构造函数，构建githubFork实例
  */
 
 ;(function(window, undefined){
@@ -26,17 +26,31 @@
         return o;
     }
 
+    // 生成类名
+    function classNameCreate(pos,type){
+        var base = 'github-fork-ribbon';
+        var result = '';
+
+        if(pos.indexOf('left') !== -1){
+            base += ' gf-ribbon-left';
+        }
+        if(pos.indexOf('bottom') !== -1){
+            base += 'gf-ribbon-bottom';
+        }
+        result = base + ' gf-ribbon-' + type;
+        return result;
+    }
+
     // 默认参数
     var defaults = {
-        // text : 'fork me on github', // 展示文本,目前有bug，不开放修改
+        text : 'Fork me on Github', // 展示文本,请不要过长或过短，目前无法根据文本长度动态改变ribbon大小
         url : 'https://github.com/merrier/', // 跳转链接
-        position: 'right', // 位置，目前只支持'left'和'right'
-        bgColor: '#333',
-        zIndex: 2,
-        fixed: false,
-        target: '_blank' //何处打开链接，和a标签的target属性一致
+        position: ['right','top'], // 位置，array类型
+        type: 'black',  // 样式类型，目前只支持四种：'black','orange','red',green
+        zIndex: 2,  // 层级
+        fixed: false,   // 是否position设置为fixed
+        target: '_blank' // 何处打开链接，和a标签的target属性一致
     };
-
 
     // 插件构造函数
     var forkGithub = function(opt) {
@@ -52,15 +66,23 @@
             return document.getElementsByClassName('forkGithub-ribbon')[0];
         },
         create: function(opt,callback){
-            forkGithub.prototype.options = extend(forkGithub.prototype.options,opt,true); //如果用户调用create()时传入参数，需要重置参数
+            forkGithub.prototype.options = extend(forkGithub.prototype.options,opt,true); // 如果用户调用create()时传入参数，需要重置参数
             if(!this.hasDom){
-                var node = document.createElement('div');
-                // node.innerHTML = '<a href=' + this.options.url + '>' + this.options.text + '</a>';
-                node.innerHTML = '<a target="' + this.options.target + '" href=' + this.options.url + '>' + 'fork me on github' + '</a>';
-                node.className = 'forkGithub-ribbon forkGithub-ribbon-' + this.options.position;
-                node.style.backgroundColor = this.options.bgColor;
+
+                var node = document.createElement('a');
+                node.className = classNameCreate(this.options.position,this.options.type);
+                node.setAttribute('target','');
+                node.setAttribute('href','');
+                node.setAttribute('data-ribbon','');
+                node.setAttribute('title','');
                 node.style.zIndex = this.options.zIndex;
-                this.options.fixed ? node.style.position = 'fixed' : 'absolute';
+
+                // var node = document.createElement('div');
+                // node.innerHTML = '<a href=' + this.options.url + '>' + this.options.text + '</a>';
+                // node.innerHTML = '<a target="' + this.options.target + '" href=' + this.options.url + '>' + 'fork me on github' + '</a>';
+                // node.className = 'forkGithub-ribbon forkGithub-ribbon-' + this.options.position;
+                // node.style.backgroundColor = this.options.bgColor;
+                // this.options.fixed ? node.style.position = 'fixed' : 'absolute';
                 document.getElementsByTagName('body')[0].appendChild(node);
                 this.hasDom = true;
             }

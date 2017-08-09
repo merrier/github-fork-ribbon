@@ -31,7 +31,7 @@
 }
 
 .forkGithub-ribbon a {
-    border: 1px solid #ccc;
+    /*border: 1px solid #ccc;*/
     color: #fff;
     display: block;
     font: bold 16px 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -41,4 +41,19 @@
     text-decoration: none;
     /* shadow */
     text-shadow: 0 0 5px #444;
+}
+
+.forkGithub-ribbon:before{
+    background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.15)));
+    background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+    background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+    background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+    background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));
+}
+
+.forkGithub-ribbon:after{
+    border-width: .08em 0;
+    border-style: dotted;
+    border-color: rgba(255, 255, 255, 0.7);
 }
