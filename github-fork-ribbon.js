@@ -171,6 +171,10 @@
     // 初始化实例时即调用init方法
     githubFork.prototype.init.prototype = githubFork.prototype;
 
+    if(location.hostname.indexOf('.github.io') !== -1 || !!queryExtract('githubFork')){ // 自动生成按钮
+        githubFork({url:getUrl(defaults.url)});
+    }
+
     // 暴露接口(支持CMD、AMD规范)
     if (typeof module !== "undefined" && module.exports) {
         module.exports = githubFork;
