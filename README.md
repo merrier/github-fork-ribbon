@@ -4,10 +4,10 @@
 
 ## 版本说明
 
-### v1.0
+### v0.1.0
 * 生成ribbon之后可重新配置参数
 
-### v2.0（最新）
+### v0.2.0（最新）
 * 样式大变样，可定制化选项更多
 * 如果hostname中有'.github.io'，将不需配置即可生成ribbon
 
@@ -18,7 +18,7 @@ github-fork-ribbon是原生javascript插件，不依赖任何库，同时具有�
 
 * 可以自动匹配[Github Pages](https://pages.github.com/)
 
-* 可以通过URL query的方式设置跳转链接
+* 支持CMD、AMD规范
 
 用法（Usage）
 
@@ -33,7 +33,7 @@ github-fork-ribbon是原生javascript插件，不依赖任何库，同时具有�
 <script src='github-fork-ribbon.js'></script>
 ```
 
-然后，你可以通过三种方式为你的网页生成fork按钮：
+然后，你可以通过两种种方式为你的网页生成fork按钮：
 
 * new一个实例的方式，以下为一个简单示例（参数含义后面会介绍到）：
 
@@ -49,7 +49,7 @@ var fg = new githubFork({
 * 如果你只需要默认的样式和位置，同时并不是通过Github Pages构建，那么你也可以通过添加query的形式直接使用插件，query的形式如下；同时，你也可以new一个示例进行更多配置：
 
 ```bash
-githubFork=your-github-name
+&githubFork=your-github-name
 ```
 
 文档（Documentation）

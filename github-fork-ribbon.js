@@ -2,7 +2,7 @@
  * @author Merrier
  * QQ:953075999
  * @website: http://www.merrier.wang
- * @name github-fork-ribbon 2.0.0
+ * @name github-fork-ribbon 0.2.0
  * @description 用于为网页自动生成fork github按钮的JS插件
  *
  * 调用方法：
@@ -26,16 +26,43 @@
         return o;
     }
 
+    // 判断当前userAgent
+    function isMobile(){
+        return /Mobile/i.test(navigator.userAgent);
+    }
+
+    // 解析query
+    function queryExtract(paras) {
+        var url = location.search;
+        var paraString = url.substring(1).split("&");
+        var paraObj = {};
+        for (var i = 0, len=paraString.length; i < len; i++) {
+            var j = paraString[i];
+            if(j) {
+                paraObj[j.substring(0, j.indexOf("=")).toLowerCase()] = j.substring(j.indexOf("=") + 1, j.length);
+            }
+        }
+
+        if(!paras) return paraObj;
+        var returnValue = paraObj[paras.toLowerCase()];
+        return returnValue ? returnValue.trim() : "";
+    }
+
     // 生成跳转链接
     function getUrl(opt_url){
         var hostName = location.hostname;
         var index = hostName.indexOf('.github.io');
+        var query = queryExtract('githubFork');
+        var realUrl = opt_url;
 
-        if(opt_url === defaults.url){   // 用户没有自定义url参数
-            opt_url = index === -1 ? opt_url : '//github.com/' + hostName.slice(0, index);
+        if(realUrl === defaults.url){   // 用户没有自定义url参数
+            if(index !== -1) {
+                realUrl = '//github.com/' + hostName.slice(0, index);
+            }else if (!!query){
+                realUrl = '//github.com/' + query;
+            }
         }
-
-        return opt_url;
+        return realUrl;
     }
 
     // 生成类名
@@ -62,7 +89,8 @@
         zIndex: 2,  // 层级
         fixed: false,   // 是否position设置为fixed
         target: '_blank', // 何处打开链接，和a标签的target属性一致
-        fontSize: '15px' // 字体大小
+        fontSize: '13px', // 字体大小,
+        isMobileHide: true //移动端是否隐藏
     };
 
     // 插件构造函数
@@ -92,6 +120,10 @@
                 node.style.fontSize = this.options.fontSize;
                 document.getElementsByTagName('body')[0].appendChild(node);
                 this.hasDom = true;
+
+                if(isMobile() && this.options.isMobileHide) {
+                    this.hide();
+                }
             }
             callback && callback();
             return this;
