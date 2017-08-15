@@ -90,7 +90,7 @@
         fixed: false,   // 是否position设置为fixed
         target: '_blank', // 何处打开链接，和a标签的target属性一致
         fontSize: '13px', // 字体大小,
-        isMobileHide: true //移动端是否隐藏
+        isMobileHide: false //移动端是否隐藏
     };
 
     // 插件构造函数

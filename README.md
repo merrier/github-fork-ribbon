@@ -97,10 +97,36 @@ type: String
 
 按钮的颜色类似，默认共有四种颜色（0.2.0），分别为黑色、红色、橘色和绿色，如下表所示：
 
-配置项（Configuration）
+|             black            |           red            |              orange            |             green            |
+|:----------------------------:|:------------------------:|:------------------------------:|:----------------------------:|
+| ![black](./images/black.png) | ![red](./images/red.png) | ![orange](./images/orange.png) | ![green](./images/green.png) |
 
-因为可以通过三种方式
+zIndex: Number
 
+> default: 2
 
+按钮的z-index属性
 
+fixed: Boolean
 
+> default: false
+
+设置按钮的position属性是否为fixed
+
+target: String
+
+> default: '_blank'
+
+按钮链接打开方式，共有四种：'_blank'、'_top'、'_parent'、'_self',与<a>标签的target属性一致
+
+fontSize: String
+
+> default: '13px'
+
+设置按钮的字体大小，字体改变时，按钮本身大小也会发生改变
+
+isMobileHide: Boolean
+
+> default: 'true'
+
+是否在移动端访问时将按钮隐藏
