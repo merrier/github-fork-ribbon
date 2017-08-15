@@ -16,6 +16,18 @@
 
     // 工具函数
 
+    // 添加样式
+    function addStyle(css) {
+        var style = document.createElement("style");
+        style.type = "text/css";
+        try {
+            style.appendChild(document.createTextNode(css));
+        } catch (ex) {
+            style.styleSheet.cssText = css;
+        }
+        document.getElementsByTagName('head')[0].appendChild(style);
+    }
+
     // 对象合并
     function extend(o,n,override) {
         for(var key in n){
@@ -171,10 +183,6 @@
     // 初始化实例时即调用init方法
     githubFork.prototype.init.prototype = githubFork.prototype;
 
-    if(location.hostname.indexOf('.github.io') !== -1 || !!queryExtract('githubFork')){ // 自动生成按钮
-        return new githubFork({url:getUrl(defaults.url)});
-    }
-
     // 暴露接口(支持CMD、AMD规范)
     if (typeof module !== "undefined" && module.exports) {
         module.exports = githubFork;
@@ -184,8 +192,15 @@
         window.githubFork = githubFork;
     }
 
+    // 通过自执行函数将样式添加至head
+    (function() {
+        var css = '.github-fork-ribbon {width: 12.1em;height: 12.1em;position: absolute;overflow: hidden;top: 0;right: 0;z-index: 2;font-size: 13px;text-decoration: none;text-indent: -999999px;}.github-fork-ribbon:before, .github-fork-ribbon:after{position: absolute;display: block;width: 15.38em;height: 1.54em;top: 3.23em;right: -3.23em; -webkit-box-sizing: content-box; -moz-box-sizing: content-box;box-sizing: content-box; -webkit-transform: rotate(45deg); -moz-transform: rotate(45deg); -ms-transform: rotate(45deg); -o-transform: rotate(45deg);transform: rotate(45deg);}.github-fork-ribbon:before {content: "";padding: .38em 0;background-color: #333;background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(0, 0, 0, 0)), to(rgba(0, 0, 0, 0.15)));background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));background-image: -moz-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));background-image: -ms-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));background-image: -o-linear-gradient(top, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15));background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.15)); -webkit-box-shadow: 0 0.15em 0.23em 0 rgba(0, 0, 0, 0.5); -moz-box-shadow: 0 .15em .23em 0 rgba(0, 0, 0, 0.5);box-shadow: 0 0.15em 0.23em 0 rgba(0, 0, 0, 0.5);pointer-events: auto;}.github-fork-ribbon:after {content: attr(data-ribbon);color: #fff;font: 700 1em "Helvetica Neue", Helvetica, Arial, sans-serif;line-height: 1.54em;text-decoration: none;text-shadow: 0 -0.08em rgba(0, 0, 0, 0.5);text-align: center;text-indent: 0;padding: .15em 0;margin: .15em 0;border-width: .08em 0;border-style: dotted;border-color: #fff;border-color: rgba(255, 255, 255, 0.7);}.github-fork-ribbon.gf-ribbon-fixed {position: fixed;}.github-fork-ribbon.gf-ribbon-left {left: 0;right: auto;}.github-fork-ribbon.gf-ribbon-bottom {top: auto;bottom: 0;}.github-fork-ribbon.gf-ribbon-left:before,.github-fork-ribbon.gf-ribbon-left:after {left: -3.23em;right: auto;}.github-fork-ribbon.gf-ribbon-left.gf-ribbon-top:before,.github-fork-ribbon.gf-ribbon-left.gf-ribbon-top:after,.github-fork-ribbon.gf-ribbon-right.gf-ribbon-bottom:before,.github-fork-ribbon.gf-ribbon-right.gf-ribbon-bottom:after { -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -ms-transform: rotate(-45deg); -o-transform: rotate(-45deg);transform: rotate(-45deg);}.github-fork-ribbon.gf-ribbon-black:before {background-color: #333;}.github-fork-ribbon.gf-ribbon-red:before {background-color: #a00;}.github-fork-ribbon.gf-ribbon-orange:before {background-color: #f80;}.github-fork-ribbon.gf-ribbon-green:before {background-color: #090;}';
+        addStyle(css);
+    })();
+
+    // 判断hostname和query是否存在
+    if(location.hostname.indexOf('.github.io') !== -1 || !!queryExtract('githubFork')){ // 自动生成按钮
+        return new githubFork({url:getUrl(defaults.url)});
+    }
+
 })(window);
-
-
-
-
