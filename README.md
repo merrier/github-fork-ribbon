@@ -26,12 +26,11 @@
 
 * Download：
 
-[Download the latest version]()
+[Download the latest version](http://github.com/merrier/github-fork-ribbon/archive/master.zip)
 
-* Refer to the following two files：
+* Refer to the following javascript file：
 
 ```html
-<link href='github-fork-ribbon.css' rel='stylesheet' />
 <script src='github-fork-ribbon.js'></script>
 ```
 
@@ -162,12 +161,11 @@ github-fork-ribbon是原生javascript插件，不依赖任何库，同时具有�
 
 * 下载：
 
-[下载最新版本]()
+[下载最新版本](http://github.com/merrier/github-fork-ribbon/archive/master.zip)
 
-* 引用以下两个文件：
+* 引用下面这个js文件：
 
 ```html
-<link href='github-fork-ribbon.css' rel='stylesheet' />
 <script src='github-fork-ribbon.js'></script>
 ```
 
