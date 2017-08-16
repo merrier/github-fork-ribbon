@@ -115,19 +115,19 @@
     githubFork.prototype = {
         constructor: githubFork,
         _setStyle: function (dom, opt) {
-            dom.className = classNameCreate(opt.position, opt.type);
-            dom.setAttribute('target', opt.target || defaults.target);
-            dom.setAttribute('href', getUrl(opt.url));
-            dom.setAttribute('data-ribbon', opt.text || defaults.text);
-            dom.setAttribute('title', opt.text || defaults.text);
-            dom.style.zIndex = opt.zIndex || defaults.zIndex;
-            dom.style.fontSize = opt.fontSize || defaults.fontSize;
+            dom.className = classNameCreate(opt.position, this.options.type);
+            dom.setAttribute('target', opt.target || this.options.target);
+            dom.setAttribute('href', getUrl(opt.url || this.options.url));
+            dom.setAttribute('data-ribbon', opt.text || this.options.text);
+            dom.setAttribute('title', opt.text || this.options.text);
+            dom.style.zIndex = opt.zIndex || this.options.zIndex;
+            dom.style.fontSize = opt.fontSize || this.options.fontSize;
         },
         _getDom: function () {
             return document.getElementsByClassName('github-fork-ribbon')[0];
         },
         create: function (opt, callback) {
-            githubFork.prototype.options = extend(githubFork.prototype.options, opt, true); // 如果用户调用create()时传入参数，需要重置参数
+            this.options = extend(githubFork.prototype.options, opt, true); // 如果用户调用create()时传入参数，需要重置参数
             if (!this.hasDom) {
                 var node = document.createElement('a');
                 this._setStyle(node, this.options);
@@ -204,7 +204,7 @@
 
     // 判断hostname和query是否存在
     if (location.hostname.indexOf('.github.io') !== -1 || !!queryExtract('githubFork')) { // 自动生成按钮
-        return window.gfRibbon = new githubFork({url: getUrl(defaults.url)});
+        return window.githubForkRibbon = new githubFork({url: getUrl(defaults.url)});
     }
 
 })(window);
