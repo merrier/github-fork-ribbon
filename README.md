@@ -18,7 +18,7 @@
 
 * Can automatically match [Github Pages](https://pages.github.com/)
 
-* Support multiple operations for ribbon
+* Support multiple operations for ribbon, and also supports chained calls
 
 * Support the CMD and AMD specifications
 
@@ -153,7 +153,7 @@ github-fork-ribbon是原生javascript插件，不依赖任何库，同时具有�
 
 * 可以自动匹配[Github Pages](https://pages.github.com/)
 
-* 支持多种对于ribbon的操作
+* 支持多种对于ribbon的操作，同时支持链式调用
 
 * 支持CMD、AMD规范
 

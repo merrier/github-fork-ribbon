@@ -114,7 +114,6 @@
 
     githubFork.prototype = {
         constructor: githubFork,
-
         _setStyle: function (dom, opt) {
             dom.className = classNameCreate(opt.position, opt.type);
             dom.setAttribute('target', opt.target || defaults.target);
