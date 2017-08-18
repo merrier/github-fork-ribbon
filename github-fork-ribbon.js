@@ -3,10 +3,10 @@
  * QQ:953075999
  * @website: http://www.merrier.wang
  * @name github-fork-ribbon 0.2.0
- * @description 用于为网页自动生成fork github按钮的JS插件
+ * @description 用于为网页生成fork github按钮的原生JS插件
  *
  * 调用方法：
- * 提供 var fg = new githubFork() 构造函数，构建githubFork实例
+ * 提供 var githubForkRibbon = new githubFork() 构造函数，构建githubFork实例
  */
 
 ;(function (window, undefined) {

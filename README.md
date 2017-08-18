@@ -24,17 +24,33 @@
 
 ## Usage
 
-* Download：
+### Import
 
-[Download the latest version](http://github.com/merrier/github-fork-ribbon/archive/master.zip)
-
-* Refer to the following javascript file：
-
+Normal
 ```html
-<script src='github-fork-ribbon.js'></script>
+<script src='github-fork-ribbon.min.js'></script>
 ```
 
-Then you can generate fork buttons for your web pages in three ways:
+CommonJS
+```js
+var githubForkRibbon = require('github-fork-ribbon');
+```
+
+AMD(requireJS)
+```js
+require(['github-fork-ribbon'], function() {
+    ...
+});
+```
+
+CMD(seaJS)
+```js
+seajs.use('github-fork-ribbon', function() {
+    ...
+});
+```
+
+### Then you can generate fork buttons for your web pages in three ways:
 
 * The way an instance of `new` is followed by a simple example(followed by the meaning of the parameters):
 
@@ -129,7 +145,76 @@ The font size of the button. When the font changes, the size of the button itsel
 
 > default: 'true'
 
-While hide the button while accessing the phone
+Hide the button while accessing the phone
+
+### Method
+
+:link: Means that chained calls are supported
+
+- [config](#config--link)
+- [hide](#show--link)
+- [show](#hide--link)
+- [remove](#remove--link)
+
+#### config :link:
+
+You can call this method when you need to configure the button(If you generate the button automatically in the latter two ways in the above three ways, `github-fork-ribbon` will mount the instance of button to `window`, and the variable is named `githubForkRibbon`)
+
+Parameters:
+
+* opt:configuration [Object]
+* callback:callback [Function]
+
+```js
+window.githubForkRibbon.config({
+    position: ['left', 'top'],
+})
+```
+
+#### hide :link:
+
+This method comes in handy when you hide the button at a particular point in time
+
+Parameter:
+
+* callback:callback [Function]
+
+```js
+var githubForkRibbon = new githubFork({
+    url: '//github.com/your-github-name',
+    type: 'red',
+})
+
+githubForkRibbon.hide()
+```
+
+#### show :link:
+
+Show the button
+
+Parameter:
+
+* callback:callback [Function]
+
+```js
+window.githubForkRibbon.show( function() {
+    console.log("I'm back!");
+})
+```
+
+#### remove :link:
+
+Remove the button
+
+Parameter:
+
+* callback:callback [Function]
+
+```js
+window.githubForkRibbon.remove( function() {
+    console.log("I'm removed!");
+})
+```
 
 
 
@@ -159,17 +244,34 @@ github-fork-ribbon是原生javascript插件，不依赖任何库，同时具有�
 
 ## 用法
 
-* 下载：
+### 引入
 
-[下载最新版本](http://github.com/merrier/github-fork-ribbon/archive/master.zip)
-
-* 引用下面这个js文件：
-
+普通方式引入
 ```html
-<script src='github-fork-ribbon.js'></script>
+<script src='github-fork-ribbon.min.js'></script>
 ```
 
-然后，你可以通过以下三种方式为你的网页生成fork按钮：
+CommonJS规范引入
+```js
+var githubForkRibbon = require('github-fork-ribbon');
+```
+
+AMD规范引入（requireJS）
+```js
+require(['github-fork-ribbon'], function() {
+    ...
+});
+```
+
+CMD规范引入（seaJS）
+```js
+seajs.use('github-fork-ribbon', function() {
+    ...
+});
+```
+```
+
+### 然后，你可以通过以下三种方式为你的网页生成fork按钮：
 
 * new一个实例的方式，以下为一个简单示例（参数含义后面会介绍到）：
 
@@ -264,3 +366,72 @@ var gf = new githubFork({
 > default: 'true'
 
 在移动端访问时是否隐藏按钮
+
+### 方法
+
+:link: 表示支持链式调用
+
+- [config](#config--link)
+- [hide](#show--link)
+- [show](#hide--link)
+- [remove](#remove--link)
+
+#### config :link:
+
+当你需要对生成的按钮进行配置时，可调用此方法（如果你是通过上面三种方式中的后两种方式自动生成按钮的话，github-fork-ribbon会将按钮的实例挂载到`window`，变量名为`githubForkRibbon`）
+
+参数：
+
+* opt：配置项
+* callback：回调
+
+```js
+window.githubForkRibbon.config({
+    position: ['left', 'top'],
+})
+```
+
+#### hide :link:
+
+当你在某个特定时间点隐藏按钮时，该方法将派上用场
+
+参数：
+
+* callback：回调
+
+```js
+var githubForkRibbon = new githubFork({
+    url: '//github.com/your-github-name',
+    type: 'red',
+})
+
+githubForkRibbon.hide()
+```
+
+#### show :link:
+
+显示按钮
+
+参数：
+
+* callback：回调
+
+```js
+window.githubForkRibbon.show( function() {
+    console.log("我胡汉三回来了！");
+})
+```
+
+#### remove :link:
+
+移除按钮
+
+参数：
+
+* callback：回调
+
+```js
+window.githubForkRibbon.remove( function() {
+    console.log("你移除我了！");
+})
+```
