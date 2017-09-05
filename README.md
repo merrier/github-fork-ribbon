@@ -1,4 +1,4 @@
-# github-fork-ribbon
+# github-fork-ribbon-normal
 
 > A native JavaScript plugin that automatically adds fork github buttons to your web pages.Simple but powerful!
 
@@ -217,8 +217,7 @@ window.githubForkRibbon.remove( function() {
 ```
 
 
-
-# github-fork-ribbon
+# github-fork-ribbon-normal
 
 > 一个自动为你的网页添加fork按钮的原生javascript插件，简单实用！
 
