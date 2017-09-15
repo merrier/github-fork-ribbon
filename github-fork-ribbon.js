@@ -122,6 +122,7 @@
             dom.setAttribute('title', opt.text || this.options.text);
             dom.style.zIndex = opt.zIndex || this.options.zIndex;
             dom.style.fontSize = opt.fontSize || this.options.fontSize;
+            dom.style.position = opt.fixed && 'fixed';
         },
         _getDom: function () {
             return document.getElementsByClassName('github-fork-ribbon')[0];
